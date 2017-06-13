@@ -122,3 +122,17 @@
     align-self: stretch;
   }
 }
+
+@mixin mdc-layout-grid-fixed-column-width($size, $margin, $gutter, $column-width) {
+  $columns: map-get($mdc-layout-grid-columns, $size);
+  $gutter-number: $columns - 1;
+  $margin-number: 2;
+
+  width: $column-width * $columns + $gutter * $gutter-number + $margin * $margin-number;
+  width:
+    calc(
+      var(--mdc-layout-grid-column-width-#{$size}, #{$column-width}) * #{$columns} +
+      var(--mdc-layout-grid-gutter-#{$size}, #{$gutter}) * #{$gutter-number} +
+      var(--mdc-layout-grid-margin-#{$size}, #{$margin}) * #{$margin-number}
+    );
+}
